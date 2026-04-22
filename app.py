@@ -5,9 +5,9 @@ from run_takeoff import run_takeoff
 
 app = Flask(__name__)
 
-# Config
-UPLOAD_FOLDER = 'uploads'
-OUTPUT_FOLDER = 'outputs'
+# Config for Vercel (Read-only filesystem requires /tmp)
+UPLOAD_FOLDER = '/tmp/uploads'
+OUTPUT_FOLDER = '/tmp/outputs'
 ALLOWED_EXTENSIONS = {'dxf'}
 
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
