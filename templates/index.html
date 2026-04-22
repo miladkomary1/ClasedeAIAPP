@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DXF Rebar Take-Off</title>
+    <!-- Google Fonts for modern typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="background-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <div class="app-container">
+        <header class="app-header">
+            <div class="logo-icon">
+                <i class="fa-solid fa-layer-group"></i>
+            </div>
+            <h1>Armaduras DXF Engine</h1>
+            <p>Sube tu plano DXF y obtén el cuadro de armaduras instantáneamente.</p>
+        </header>
+
+        <main class="main-content">
+            <div class="upload-area" id="drop-zone">
+                <div class="upload-content">
+                    <div class="upload-icon-container">
+                        <i class="fa-solid fa-cloud-arrow-up cloud-icon"></i>
+                    </div>
+                    <h2>Arrastra tu archivo .dxf aquí</h2>
+                    <p>o haz clic para explorar</p>
+                    <input type="file" id="file-input" accept=".dxf" hidden>
+                </div>
+
+                <div class="processing-state" id="processing-state" style="display: none;">
+                    <div class="spinner"></div>
+                    <h3>Procesando plano...</h3>
+                    <p>Extrayendo marcas y calculando perfiles</p>
+                </div>
+            </div>
+            
+            <div id="results-container" class="results-container" style="display: none;">
+                <div class="results-header">
+                    <h2>Resumen de Armaduras</h2>
+                    <button id="download-btn" class="download-btn">
+                        <i class="fa-solid fa-file-excel"></i> Descargar Excel
+                    </button>
+                </div>
+                <div class="table-responsive">
+                    <table id="results-table" class="results-table">
+                        <thead>
+                            <tr>
+                                <th>Marca</th>
+                                <th>Nota</th>
+                                <th>Barras Totales</th>
+                                <th>Ø (mm)</th>
+                                <th>Long. Total (m)</th>
+                                <th>Peso Total (kg)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="results-body">
+                            <!-- Populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+                <button id="new-upload-btn" class="new-upload-btn">Procesar otro archivo</button>
+            </div>
+            
+            <div id="result-message" class="result-message"></div>
+        </main>
+        
+        <footer class="app-footer">
+            <p>v1.0 · Powered by Antigravity Skills</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
